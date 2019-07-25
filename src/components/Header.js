@@ -5,9 +5,7 @@ const Header = () => {
   return (
     <div>
       <Jumbotron fluid>
-        <container fluid>
           <h1 className="display-3">Hello, Project!</h1>
-        </container>
       </Jumbotron>
     </div>
   );
