@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { Home, Info, About } from "../pages";
+import { Home, Info, About, Search } from "../pages";
 import { Menu, Header } from "../components";
 import client from "./apolloClient";
 import { ApolloProvider } from "react-apollo";
@@ -12,7 +12,9 @@ function App() {
         <Header />
         <Menu />
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={Search} />
+          <Route path="/home/:id" component={Home} />
+          <Route path="/info/:name/:id" component={Info} />
           <Route path="/info" component={Info} />
           <Route exact path="/about" component={About} />
         </Switch>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Query } from "react-apollo";
-import { INFO } from "./queries";
 import { Link } from "react-router-dom";
+import gql from "graphql-tag";
 import {
   Spinner,
   Container,
@@ -15,12 +15,28 @@ import {
   CardHeader,
   CardBody,
   CardTitle,
-  Button,
+  Button
 } from "reactstrap";
 
-const Info = () => {
+const Info = ({ match }) => {
+  const name = match.params.name;
+  const id = match.params.id;
+  const INFO = gql`
+  query ($name: String!, $id: String!){
+    rows(characterName: $name) {
+      characterId
+      characterName
+      level
+      jobGrowName
+    }
+  status(characterId: $id) {
+    name
+    value
+  }
+}
+`;
   return (
-    <Query query={INFO}>
+    <Query query={INFO} variables={{ id, name }}>
       {({ loading, data, error }) => {
         if (loading)
           return (
@@ -48,7 +64,7 @@ const Info = () => {
                     <CardImg
                       top
                       style={{ width: "100%", height: "100%" }}
-                      src={`https://img-api.neople.co.kr/df/servers/cain/characters/a8a66a8cecc87bae4e939a170d1fab91?zoom=3&apikey=7KyujUEOMpBOTIELdNlMypTX0d0D6wdb`}
+                      src={`https://img-api.neople.co.kr/df/servers/cain/characters/${match.params.id}?zoom=3&apikey=7KyujUEOMpBOTIELdNlMypTX0d0D6wdb`}
                       alt="not loaded!"
                     />
                     <CardTitle>Level : {data.rows[0].level}</CardTitle>

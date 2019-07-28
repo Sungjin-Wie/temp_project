@@ -39,17 +39,6 @@ export default class Menu extends React.Component {
               <NavItem>
                 <NavLink>
                   <Link
-                    to="/info"
-                    className="text-muted"
-                    style={{ textDecoration: "none" }}
-                  >
-                    내 정보
-                  </Link>
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink>
-                  <Link
                     to="/about"
                     className="text-muted"
                     style={{ textDecoration: "none" }}
