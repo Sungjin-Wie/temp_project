@@ -56,6 +56,7 @@ const Info = ({ match }) => {
         if (error) return <span>error!!!!!</span>;
         return (
           <Container>
+            <br />
             <Row>
               <Col>
                 <Card style={{ width: "100%" }}>
