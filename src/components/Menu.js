@@ -30,7 +30,7 @@ export default class Menu extends React.Component {
         <Navbar color="light" light expand="md">
           <NavbarBrand>
             <Link to="/" style={{ textDecoration: "none" }}>
-              React Project
+              Main
             </Link>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
@@ -38,15 +38,23 @@ export default class Menu extends React.Component {
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink>
-                  <Link to="/info" style={{ textDecoration: "none" }}>
-                    Info
+                  <Link
+                    to="/info"
+                    className="text-muted"
+                    style={{ textDecoration: "none" }}
+                  >
+                    내 정보
                   </Link>
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink>
-                  <Link to="/about" style={{ textDecoration: "none" }}>
-                    About
+                  <Link
+                    to="/about"
+                    className="text-muted"
+                    style={{ textDecoration: "none" }}
+                  >
+                    프로젝트에 관하여
                   </Link>
                 </NavLink>
               </NavItem>

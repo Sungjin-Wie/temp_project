@@ -2,31 +2,26 @@ import gql from "graphql-tag";
 
 export const HOME_PAGE = gql`
   query {
-    movies(limit: 50, rating: 8) {
-      medium_cover_image
-      id
-      title
-      rating
-      genres
+    rows(characterName: "건전참철문화") {
+      characterId
+      characterName
+      level
+      jobGrowName
     }
   }
 `;
 
-export const MOVIE_DETAILS = gql`
-  query getMovieDetails($movieId: Int!) {
-    movie(id: $movieId) {
-      medium_cover_image
-      title
-      rating
-      description_intro
-      language
-      genres
+export const INFO = gql`
+  query {
+    rows(characterName: "건전참철문화") {
+      characterId
+      characterName
+      level
+      jobGrowName
     }
-    suggestions(id: $movieId) {
-      id
-      title
-      rating
-      medium_cover_image
-    }
+  status(characterId:"a8a66a8cecc87bae4e939a170d1fab91") {
+    name
+    value
   }
+}
 `;

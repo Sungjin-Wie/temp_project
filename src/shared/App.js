@@ -13,7 +13,6 @@ function App() {
         <Menu />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/info/:name" component={Info} />
           <Route path="/info" component={Info} />
           <Route exact path="/about" component={About} />
         </Switch>
