@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
-import gql from "graphql-tag";
 import {
   Spinner,
   Container,
@@ -22,6 +21,7 @@ import {
   Table
 } from "reactstrap";
 import classnames from "classnames";
+import gql from "graphql-tag";
 
 const Info = ({ match }) => {
   const [tab, setTab] = useState("1");
@@ -50,10 +50,14 @@ const Info = ({ match }) => {
         itemName
         itemType
         itemTypeDetail
+        reinforce
+        refine
+        amplificationName
       }
       avatar(characterId: $id) {
         slotName
         itemName
+        itemId
       }
     }
   `;
@@ -93,8 +97,12 @@ const Info = ({ match }) => {
                       alt="not loaded!"
                     />
                     <CardTitle>Level : {data.rows[0].level}</CardTitle>
-                    <CardText>직업 : {(data.rows[0].jobGrowName === "자각2" 
-                    ? `${data.rows[0].jobName}(${data.rows[0].jobGrowName})` : data.rows[0].jobGrowName)}</CardText>
+                    <CardText>
+                      직업 :{" "}
+                      {data.rows[0].jobGrowName === "자각2"
+                        ? `${data.rows[0].jobName}(${data.rows[0].jobGrowName})`
+                        : data.rows[0].jobGrowName}
+                    </CardText>
                     <Button color="info">
                       <Link to="/" className="text-white">
                         돌아가기
@@ -114,7 +122,7 @@ const Info = ({ match }) => {
                         toggle("1");
                       }}
                     >
-                      세부 스탯
+                      스탯
                     </NavLink>
                   </NavItem>
                   <NavItem>
@@ -126,7 +134,7 @@ const Info = ({ match }) => {
                         toggle("2");
                       }}
                     >
-                      착용 장비
+                      장비
                     </NavLink>
                   </NavItem>
                   <NavItem>
@@ -138,7 +146,7 @@ const Info = ({ match }) => {
                         toggle("3");
                       }}
                     >
-                      착용 아바타
+                      아바타
                     </NavLink>
                   </NavItem>
                 </Nav>
@@ -168,6 +176,7 @@ const Info = ({ match }) => {
                       <thead>
                         <tr>
                           <th>종류</th>
+                          <th> </th>
                           <th>이름</th>
                         </tr>
                       </thead>
@@ -190,7 +199,15 @@ const Info = ({ match }) => {
                                         : c.itemTypeDetail
                                     }`}
                               </th>
-                              <td>{c.itemName}</td>
+                              <td>
+                                <img
+                                  alt="not loaded!"
+                                  src={`https://img-api.neople.co.kr/df/items/${
+                                    c.itemId
+                                  }?apikey=7KyujUEOMpBOTIELdNlMypTX0d0D6wdb`}
+                                />
+                              </td>
+                              <td>{`${c.itemTypeDetail === "칭호"? "" : `+ ${c.reinforce}`}${c.itemType === "무기" ? `/${c.refine} ` : " "}`}{c.itemName}{(c.amplificationName != null) ? ` (${c.amplificationName})` : ""}</td>
                             </tr>
                           );
                         })}
@@ -202,6 +219,7 @@ const Info = ({ match }) => {
                       <thead>
                         <tr>
                           <th>종류</th>
+                          <th> </th>
                           <th>이름</th>
                         </tr>
                       </thead>
@@ -215,6 +233,14 @@ const Info = ({ match }) => {
                                   c.slotName.indexOf("아바타")
                                 )}
                               </th>
+                              <td>
+                                <img
+                                  alt="not loaded!"
+                                  src={`https://img-api.neople.co.kr/df/items/${
+                                    c.itemId
+                                  }?apikey=7KyujUEOMpBOTIELdNlMypTX0d0D6wdb`}
+                                />
+                              </td>
                               <td>{c.itemName}</td>
                             </tr>
                           );

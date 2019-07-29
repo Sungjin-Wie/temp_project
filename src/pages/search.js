@@ -18,7 +18,7 @@ import {
 
 const Search = ({ match }) => {
   const name = match.params.id;
-  var HOME_PAGE = gql`
+  const HOME_PAGE = gql`
     query rows($name: String!){
       rows(characterName: $name) {
         characterId
