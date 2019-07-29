@@ -23,6 +23,8 @@ import {
 import classnames from "classnames";
 import gql from "graphql-tag";
 
+const API_KEY = `apikey=7KyujUEOMpBOTIELdNlMypTX0d0D6wdb`;
+
 const Info = ({ match }) => {
   const [tab, setTab] = useState("1");
   const toggle = num => {
@@ -93,7 +95,7 @@ const Info = ({ match }) => {
                       style={{ width: "100%", height: "100%" }}
                       src={`https://img-api.neople.co.kr/df/servers/cain/characters/${
                         match.params.id
-                      }?zoom=3&apikey=7KyujUEOMpBOTIELdNlMypTX0d0D6wdb`}
+                      }?zoom=3&${API_KEY}`}
                       alt="not loaded!"
                     />
                     <CardTitle>Level : {data.rows[0].level}</CardTitle>
@@ -204,21 +206,22 @@ const Info = ({ match }) => {
                                   alt="not loaded!"
                                   src={`https://img-api.neople.co.kr/df/items/${
                                     c.itemId
-                                  }?apikey=7KyujUEOMpBOTIELdNlMypTX0d0D6wdb`}
+                                  }?${API_KEY}`}
                                 />
                               </td>
                               <td>
-                                {`${
-                                  c.itemTypeDetail === "칭호"
-                                    ? ""
-                                    : (c.reinforce === 0 ? "" : `+ ${c.reinforce}`)
-                                }${
-                                  c.itemType === "무기" ? `/${c.refine} ` : " "
-                                }`}
+                                {c.reinforce === 0 ? " " : `+${c.reinforce} `}
                                 {c.itemName}
                                 {c.amplificationName != null
                                   ? ` (${c.amplificationName})`
                                   : ""}
+                                {`${
+                                  c.itemType === "무기"
+                                    ? c.refine === 0
+                                      ? " "
+                                      : ` (+${c.refine}재련)`
+                                    : " "
+                                }`}
                               </td>
                             </tr>
                           );
@@ -242,7 +245,7 @@ const Info = ({ match }) => {
                               <th scope="row">
                                 {c.slotName.substring(
                                   0,
-                                  c.slotName.indexOf("아바타")
+                                  c.slotName.indexOf(" ")
                                 )}
                               </th>
                               <td>
@@ -250,7 +253,7 @@ const Info = ({ match }) => {
                                   alt="not loaded!"
                                   src={`https://img-api.neople.co.kr/df/items/${
                                     c.itemId
-                                  }?apikey=7KyujUEOMpBOTIELdNlMypTX0d0D6wdb`}
+                                  }?${API_KEY}`}
                                 />
                               </td>
                               <td>{c.itemName}</td>

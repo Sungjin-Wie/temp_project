@@ -6,13 +6,12 @@ const Footer = () => {
   return (
     <Container>
       <Row>
-        <Col xs="3" />
-        <Col xs="auto">
+        <Col sm="4" />
+        <Col sm="auto">
           <a href="http://developers.neople.co.kr">
             <img src={logo} alt="Neople 오픈 API" style={{ width: "150%" }} />
           </a>
         </Col>
-        <Col xs="1" />
       </Row>
     </Container>
   );
