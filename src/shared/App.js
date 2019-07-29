@@ -12,10 +12,9 @@ function App() {
         <Header />
         <Menu />
         <Switch>
-          <Route exact path="/" component={Search} />
-          <Route path="/home/:id" component={Home} />
+          <Route exact path="/" component={Home} />
+          <Route path="/search/:id" component={Search} />
           <Route path="/info/:name/:id" component={Info} />
-          <Route path="/info" component={Info} />
           <Route exact path="/about" component={About} />
         </Switch>
         <br />
