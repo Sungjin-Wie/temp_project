@@ -98,7 +98,7 @@ const Info = ({ match }) => {
                     />
                     <CardTitle>Level : {data.rows[0].level}</CardTitle>
                     <CardText>
-                      직업 :{" "}
+                      직업 :
                       {data.rows[0].jobGrowName === "자각2"
                         ? `${data.rows[0].jobName}(${data.rows[0].jobGrowName})`
                         : data.rows[0].jobGrowName}
@@ -207,7 +207,19 @@ const Info = ({ match }) => {
                                   }?apikey=7KyujUEOMpBOTIELdNlMypTX0d0D6wdb`}
                                 />
                               </td>
-                              <td>{`${c.itemTypeDetail === "칭호"? "" : `+ ${c.reinforce}`}${c.itemType === "무기" ? `/${c.refine} ` : " "}`}{c.itemName}{(c.amplificationName != null) ? ` (${c.amplificationName})` : ""}</td>
+                              <td>
+                                {`${
+                                  c.itemTypeDetail === "칭호"
+                                    ? ""
+                                    : (c.reinforce === 0 ? "" : `+ ${c.reinforce}`)
+                                }${
+                                  c.itemType === "무기" ? `/${c.refine} ` : " "
+                                }`}
+                                {c.itemName}
+                                {c.amplificationName != null
+                                  ? ` (${c.amplificationName})`
+                                  : ""}
+                              </td>
                             </tr>
                           );
                         })}
