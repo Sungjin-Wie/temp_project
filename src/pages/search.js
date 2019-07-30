@@ -19,8 +19,8 @@ import {
 const Search = ({ match }) => {
   const name = match.params.id;
   const HOME_PAGE = gql`
-    query rows($name: String!){
-      rows(characterName: $name) {
+    query rows($name: String) {
+      rows(characterName: $name, itemName: "") {
         characterId
         characterName
         level
@@ -32,6 +32,7 @@ const Search = ({ match }) => {
 
   return (
     <div>
+      {console.log(HOME_PAGE)}
       <Query query={HOME_PAGE} variables={{ name }}>
         {({ loading, data, error }) => {
           if (loading)
@@ -60,19 +61,31 @@ const Search = ({ match }) => {
                       <Card style={{ width: "70%" }}>
                         <CardHeader>{c.characterName}</CardHeader>
                         <CardBody>
-                          <Link to={`/info/${c.characterName}/${c.characterId}`} className="text-white">
+                          <Link
+                            to={`/info/${c.characterName}/${c.characterId}`}
+                            className="text-white"
+                          >
                             <CardImg
                               top
                               style={{ width: "100%", height: "100%" }}
-                              src={`https://img-api.neople.co.kr/df/servers/cain/characters/${c.characterId}?zoom=3&apikey=7KyujUEOMpBOTIELdNlMypTX0d0D6wdb`}
+                              src={`https://img-api.neople.co.kr/df/servers/cain/characters/${
+                                c.characterId
+                              }?zoom=3&apikey=7KyujUEOMpBOTIELdNlMypTX0d0D6wdb`}
                               alt="not loaded!"
                             />
                           </Link>
                           <CardTitle>Level : {c.level}</CardTitle>
-                          <CardText>직업 : {(c.jobGrowName === "자각2" 
-                    ? `${c.jobName}(${c.jobGrowName})` : c.jobGrowName)}</CardText>
+                          <CardText>
+                            직업 :{" "}
+                            {c.jobGrowName === "자각2"
+                              ? `${c.jobName}(${c.jobGrowName})`
+                              : c.jobGrowName}
+                          </CardText>
                           <Button color="info">
-                            <Link to={`/info/${c.characterName}/${c.characterId}`} className="text-white">
+                            <Link
+                              to={`/info/${c.characterName}/${c.characterId}`}
+                              className="text-white"
+                            >
                               정보
                             </Link>
                           </Button>

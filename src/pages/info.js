@@ -30,12 +30,13 @@ const Info = ({ match }) => {
   const toggle = num => {
     setTab(num);
   };
-
+  
   const name = match.params.name;
+  console.log(name);
   const id = match.params.id;
   const INFO = gql`
-    query($name: String!, $id: String!) {
-      rows(characterName: $name) {
+    query($name: String, $id: String) {
+      rows(characterName: $name, itemName: "") {
         characterId
         characterName
         level
@@ -55,11 +56,21 @@ const Info = ({ match }) => {
         reinforce
         refine
         amplificationName
+        enchant {
+          status {
+            name
+            value
+          }
+        }
       }
       avatar(characterId: $id) {
         slotName
         itemName
         itemId
+        emblems {
+          slotColor
+          itemName
+        }
       }
     }
   `;
@@ -180,6 +191,7 @@ const Info = ({ match }) => {
                           <th>종류</th>
                           <th> </th>
                           <th>이름</th>
+                          <th>마법부여</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -223,6 +235,13 @@ const Info = ({ match }) => {
                                     : " "
                                 }`}
                               </td>
+                              <td>
+                                {c.enchant.status.map(d => {
+                                  return (
+                                    <p>{d.name}+{d.value}</p>
+                                  )
+                                })}
+                              </td>
                             </tr>
                           );
                         })}
@@ -236,6 +255,7 @@ const Info = ({ match }) => {
                           <th>종류</th>
                           <th> </th>
                           <th>이름</th>
+                          <th>엠블렘</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -257,6 +277,11 @@ const Info = ({ match }) => {
                                 />
                               </td>
                               <td>{c.itemName}</td>
+                              <td>
+                                {c.emblems.map(d => {
+                                  return <p>{d.itemName}</p>
+                                })}
+                              </td>
                             </tr>
                           );
                         })}

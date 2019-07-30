@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 
-const Home = () => {
+const Auction = () => {
   const [val, setVal] = useState("");
 
   return (
@@ -12,7 +12,8 @@ const Home = () => {
         <Row>
           <Col />
           <Col>
-            <h4>캐릭터 정보 검색</h4>
+            <h4>경매장 검색</h4>
+            <p>아이템 이름을 정확하게 입력해주세요.</p>
           </Col>
           <Col />
         </Row>
@@ -23,7 +24,7 @@ const Home = () => {
           <Col />
           <Col>
             <input value={val} onChange={e => setVal(e.target.value)} />
-            <Link to={`/search/${val}`}>검색</Link>
+            <Link to={`/result/${val}`}>검색</Link>
           </Col>
           <Col />
         </Row>
@@ -31,4 +32,4 @@ const Home = () => {
     </div>
   );
 };
-export default Home;
+export default Auction;

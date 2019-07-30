@@ -35,6 +35,17 @@ export default class Menu extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+            <NavItem>
+                <NavLink>
+                  <Link
+                    to="/auction"
+                    className="text-muted"
+                    style={{ textDecoration: "none" }}
+                  >
+                    경매장
+                  </Link>
+                </NavLink>
+              </NavItem>
               <NavItem>
                 <NavLink>
                   <Link
