@@ -237,7 +237,9 @@ const Info = ({ match }) => {
                               </td>
                               <td>
                                 {c.enchant.status.map(d => {
-                                  return (
+                                  if(d == null) return;
+                                  else
+                                    return (
                                     <p>{d.name}+{d.value}</p>
                                   )
                                 })}

@@ -5,7 +5,7 @@ import { Menu, Header, Footer } from "../components";
 import client from "./apolloClient";
 import { ApolloProvider } from "react-apollo";
 
-function App() {
+const App = () => {
   return (
     <div>
       <ApolloProvider client={client}>

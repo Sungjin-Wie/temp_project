@@ -68,9 +68,7 @@ const Search = ({ match }) => {
                             <CardImg
                               top
                               style={{ width: "100%", height: "100%" }}
-                              src={`https://img-api.neople.co.kr/df/servers/cain/characters/${
-                                c.characterId
-                              }?zoom=3&apikey=7KyujUEOMpBOTIELdNlMypTX0d0D6wdb`}
+                              src={`https://img-api.neople.co.kr/df/servers/cain/characters/${c.characterId}?zoom=3&apikey=7KyujUEOMpBOTIELdNlMypTX0d0D6wdb`}
                               alt="not loaded!"
                             />
                           </Link>
